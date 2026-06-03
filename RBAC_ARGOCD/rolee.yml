@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-rbac-cm
+  namespace: argocd
+data:
+  # RBAC policy definitions in CSV format
+  policy.csv: |
+    # Developers can get applications in 'myproject'
+    p, role:developer, applications, get, myproject/*, allow
+    # Developers can sync applications in 'myproject'
+    p, role:developer, applications, sync, myproject/*, allow 
+    # Admins can perform any action on any application
+    p, role:admin, applications, *, *, allow
+    # Assign 'developer' role to user 'alice'
+    g, Muawiya, role:developer 
+    # Assign 'admin' role to user 'bob'
+    g, Hamza, role:admin 
+  # Default role for users not explicitly assigned
+  policy.default: role:readonly
+
+
+#p, role:developer, applications, get, myproject/*, allow
+#│  │               │             │   │             │
+#│  │               │             │   │             └── allow or deny
+#│  │               │             │   └── WHERE (which project/app)
+#│  │               │             └── ACTION (what they can do)
+#│  │               └── RESOURCE (what thing they are touching)
+#│  └── role name
+#└── p means policy
+
+
+
+
+
+
+
+
+
