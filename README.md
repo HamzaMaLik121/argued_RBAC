@@ -1,11 +1,13 @@
-p, role:developer, applications, get, myproject/*, allow
-│  │               │             │   │             │
-│  │               │             │   │             └── allow or deny
-│  │               │             │   └── WHERE (which project/app)
-│  │               │             └── ACTION (what they can do)
-│  │               └── RESOURCE (what thing they are touching)
-│  └── role name
-└── p means policy
+policy.csv: |
+    # p, role:developer, applications, get, myproject/*, allow
+    # │  │               │             │   │             │
+    # │  │               │             │   │             └── allow or deny
+    # │  │               │             │   └── WHERE
+    # │  │               │             └── ACTION
+    # │  │               └── RESOURCE
+    # │  └── role name
+    # └── p means policy
+    p, role:developer, applications, get, myproject/*, allow
 
 
 Below is a table that summarizes all possible resources and which actions are valid for each of them.
